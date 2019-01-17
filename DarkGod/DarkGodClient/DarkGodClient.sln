@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkGodClient", "DarkGodClient.csproj", "{ED6FCA9F-9455-4ECB-79D4-E074861982BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkGodClient.Editor.Plugins", "DarkGodClient.Editor.Plugins.csproj", "{B06D34AF-0863-4BF6-8F21-F2B6D784CAC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED6FCA9F-9455-4ECB-79D4-E074861982BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED6FCA9F-9455-4ECB-79D4-E074861982BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED6FCA9F-9455-4ECB-79D4-E074861982BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED6FCA9F-9455-4ECB-79D4-E074861982BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06D34AF-0863-4BF6-8F21-F2B6D784CAC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06D34AF-0863-4BF6-8F21-F2B6D784CAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06D34AF-0863-4BF6-8F21-F2B6D784CAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06D34AF-0863-4BF6-8F21-F2B6D784CAC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
