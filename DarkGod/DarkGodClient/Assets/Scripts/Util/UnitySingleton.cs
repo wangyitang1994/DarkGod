@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,5 +30,4 @@ public class UnitySingleton<T> : MonoBehaviour where T : MonoBehaviour
             return instance;
         }
     }
-
 }

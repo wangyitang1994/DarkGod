@@ -42,10 +42,9 @@ public class LoginWnd : WindowRoot
                     cmd = (int)CMD.ReqLogin,
                     reqLogin = new ReqLogin() { account = acct, password = pass }
                 };
-                net.SendMsg(msg);
                 PlayerPrefs.SetString("Account", acct);
                 PlayerPrefs.SetString("Password", pass);
-                LoginSys.Instance.ResLogin();
+                LoginSys.Instance.RspLogin(msg);
             }
             else
             {

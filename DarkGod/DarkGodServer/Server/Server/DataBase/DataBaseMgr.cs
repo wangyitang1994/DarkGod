@@ -32,11 +32,12 @@ class DataBaseMgr : Singleton<DataBaseMgr>
     {
         bool isExist = false;
         PlayerData data = null;
+        MySqlDataReader reader = null;
         try
         {
             cmd = new MySqlCommand("select * from accountinfo where account=@acct", conn);
             cmd.Parameters.AddWithValue("acct", account);
-            MySqlDataReader reader = cmd.ExecuteReader();
+            reader = cmd.ExecuteReader();
             if (reader.Read() && reader.GetString("password") == password)
             {
                 isExist = true;
@@ -54,7 +55,6 @@ class DataBaseMgr : Singleton<DataBaseMgr>
             {
                 PECommon.Log("Account Or Password is Wrong...");
             }
-            reader.Close();
         }
         catch (Exception e)
         {
@@ -62,6 +62,7 @@ class DataBaseMgr : Singleton<DataBaseMgr>
         }
         finally
         {
+            reader.Close();
             if (!isExist)
             {
                 int id = -1;
@@ -99,6 +100,30 @@ class DataBaseMgr : Singleton<DataBaseMgr>
             PECommon.Log("InsertNewAcctData Error:" + e, LogType.Error);
         }
         return -1;
+    }
+
+    public bool QueryNameData(string name)
+    {
+        MySqlDataReader reader = null;
+        try
+        {
+            cmd = new MySqlCommand("select name from accountinfo where name = @name", conn);
+            cmd.Parameters.AddWithValue("name", name);
+            reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return true;
+            }
+        }
+        catch (Exception e)
+        {
+            PECommon.Log("QueryNameData Error:" + e, LogType.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
+        return false;
     }
 }
 

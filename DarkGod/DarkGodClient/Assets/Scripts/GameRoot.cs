@@ -19,7 +19,6 @@ public class GameRoot : UnitySingleton<GameRoot>
 
     void Start()
     {
-       
         InitUI();
         Init();
     }

@@ -13,27 +13,44 @@ class CacheSvc : Singleton<CacheSvc>
 {
     private Dictionary<string, ServerSession> onlineAccountDic = new Dictionary<string, ServerSession>();
     private Dictionary<ServerSession, PlayerData> onlineSessionDic = new Dictionary<ServerSession, PlayerData>();
+    DataBaseMgr dbMgr = null;
 
     public void Init()
     {
         PECommon.Log("CachSvc Init..");
+        dbMgr = DataBaseMgr.Instance;
     }
-
+    //判断是否在线
     public bool IsAccountOnline(string account)
     {
         return onlineAccountDic.ContainsKey(account);
     }
-
-    public PlayerData GetPlayerData(string account,string password)
+    //从数据库找到玩家数据
+    public PlayerData GetPlayerData(string account, string password)
     {
-        //TODO 从数据库取数据
-        return null;
+        return dbMgr.QueryPlayerData(account, password);
     }
-
-    public void AccountOnline(string account,ServerSession session,PlayerData playerData)
+    //用户登陆时缓存用户数据
+    public void AccountOnline(string account, ServerSession session, PlayerData playerData)
     {
         onlineAccountDic.Add(account, session);
         onlineSessionDic.Add(session, playerData);
     }
+    //注册时判断名称是否存在
+    public bool IsNameExit(string name)
+    {
+        return dbMgr.QueryNameData(name);
+    }
+    //
+    public PlayerData GetPlayerDataBySession(ServerSession session)
+    {
+        return onlineSessionDic[session];
+    }
+    //
+    public bool UpdatePlayerData(int id, PlayerData data)
+    {
+        return true;
+    }
+
 }
 
