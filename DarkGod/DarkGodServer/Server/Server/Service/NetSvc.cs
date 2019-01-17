@@ -59,6 +59,9 @@ public class NetSvc : Singleton<NetSvc>
             case CMD.ReqLogin:
                 LoginSys.Instance.ReqLogin(pack);
                 break;
+            case CMD.ReqRename:
+                LoginSys.Instance.ReqRename(pack);
+                break;
         }
     }
 }

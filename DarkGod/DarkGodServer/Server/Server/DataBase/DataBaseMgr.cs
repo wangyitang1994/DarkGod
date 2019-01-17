@@ -125,5 +125,26 @@ class DataBaseMgr : Singleton<DataBaseMgr>
         }
         return false;
     }
+
+    public bool UpdataPlayerData(int id, PlayerData data)
+    {
+        try
+        {
+            cmd = new MySqlCommand("Update accountinfo set name=@name,level=@level,exp=@exp,power=@power,coin=@coin,diamond=@diamond where id=@id",conn);
+            cmd.Parameters.AddWithValue("name", data.name);
+            cmd.Parameters.AddWithValue("level", data.level);
+            cmd.Parameters.AddWithValue("exp", data.exp);
+            cmd.Parameters.AddWithValue("power", data.power);
+            cmd.Parameters.AddWithValue("coin", data.coin);
+            cmd.Parameters.AddWithValue("diamond", data.diamond);
+            cmd.Parameters.AddWithValue("id", id);
+            return true;
+        }
+        catch (Exception e)
+        {
+            PECommon.Log("UpdataPlayerData Error:" + e, LogType.Error);
+        }
+        return false;
+    }
 }
 

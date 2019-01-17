@@ -37,19 +37,24 @@ class CacheSvc : Singleton<CacheSvc>
         onlineSessionDic.Add(session, playerData);
     }
     //注册时判断名称是否存在
-    public bool IsNameExit(string name)
+    public bool IsNameExist(string name)
     {
         return dbMgr.QueryNameData(name);
     }
     //
     public PlayerData GetPlayerDataBySession(ServerSession session)
     {
-        return onlineSessionDic[session];
+        if (onlineSessionDic.TryGetValue(session, out PlayerData data))
+        {
+            return data;
+        }
+        return null;
     }
     //
     public bool UpdatePlayerData(int id, PlayerData data)
     {
-        return true;
+
+        return dbMgr.UpdataPlayerData(id, data);
     }
 
 }

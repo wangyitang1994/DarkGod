@@ -18,7 +18,7 @@ namespace Protocol
         public ReqLogin reqLogin;
         public RspLogin rspLogin;
         public ReqRename reqRename;
-        public RspRename RspRename;
+        public RspRename rspRename;
     }
     //登陆接收
     [Serializable]
@@ -43,7 +43,7 @@ namespace Protocol
     [Serializable]
     public class RspRename
     {
-        public string name;
+        public PlayerData playerData;
     }
 
     [Serializable]

@@ -11,6 +11,7 @@ using Protocol;
 class LoginSys : Singleton<LoginSys>
 {
     CacheSvc cache = null;
+
     public void Init()
     {
         cache = CacheSvc.Instance;
@@ -45,6 +46,29 @@ class LoginSys : Singleton<LoginSys>
                 msg.err = (int)Error.WrongPass;
             }
 
+        }
+        pack.serSession.SendMsg(msg);
+    }
+
+    public void ReqRename(MsgPack pack)
+    {
+        NetMsg msg = new NetMsg()
+        {
+            cmd = (int)CMD.RspRename
+        };
+        ReqRename reqRename = pack.netMsg.reqRename;
+        if (!cache.IsNameExist(reqRename.name))
+        {
+            PlayerData data = cache.GetPlayerDataBySession(pack.serSession);
+            data.name = reqRename.name;
+            msg.rspRename = new RspRename()
+            {
+                playerData = data
+            };
+        }
+        else
+        {
+            msg.err = (int)Error.NameIsExist;
         }
         pack.serSession.SendMsg(msg);
     }
