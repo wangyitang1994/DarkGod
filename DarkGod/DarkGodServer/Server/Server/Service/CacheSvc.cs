@@ -7,6 +7,7 @@
 *****************************************************/
 
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 using Protocol;
 
 class CacheSvc : Singleton<CacheSvc>
@@ -33,8 +34,8 @@ class CacheSvc : Singleton<CacheSvc>
     //用户登陆时缓存用户数据
     public void AccountOnline(string account, ServerSession session, PlayerData playerData)
     {
-        onlineAccountDic.Add(account, session);
-        onlineSessionDic.Add(session, playerData);
+        if (!onlineAccountDic.ContainsKey(account)) onlineAccountDic.Add(account, session);
+        if (!onlineSessionDic.ContainsKey(session)) onlineSessionDic.Add(session, playerData);
     }
     //注册时判断名称是否存在
     public bool IsNameExist(string name)
@@ -53,7 +54,6 @@ class CacheSvc : Singleton<CacheSvc>
     //
     public bool UpdatePlayerData(int id, PlayerData data)
     {
-
         return dbMgr.UpdataPlayerData(id, data);
     }
 

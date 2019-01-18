@@ -10,6 +10,7 @@ using PENet;
 using Protocol;
 using System.Collections.Generic;
 using UnityEngine;
+using LogType = Protocol.LogType;
 
 public class NetSvc : MonoBehaviour
 {
@@ -57,13 +58,18 @@ public class NetSvc : MonoBehaviour
     }
 
     //添加待执行消息
-    private void AddMsgQue(NetMsg msg)
+    public void AddMsgQue(NetMsg msg)
     {
-        msgQueue.Enqueue(msg);
+        lock (obj)
+        {
+            msgQueue.Enqueue(msg);
+        }
     }
     // 处理消息
+
     private void Update()
     {
+
         if (msgQueue.Count > 0)
         {
             lock (obj)
@@ -71,7 +77,6 @@ public class NetSvc : MonoBehaviour
                 NetMsg msg = msgQueue.Dequeue();
                 ProcessMsg(msg);
             }
-
         }
     }
 
@@ -84,6 +89,9 @@ public class NetSvc : MonoBehaviour
                 case (int)CMD.RspLogin:
                     LoginSys.Instance.RspLogin(msg);
                     break;
+                case (int)CMD.RspRename:
+                    LoginSys.Instance.RspRename(msg);
+                    break; ;
             }
         }
         else
@@ -96,6 +104,13 @@ public class NetSvc : MonoBehaviour
                 case (int)Error.WrongPass:
                     GameRoot.Instance.DynamicWnd.AddTips("账号密码错误...");
                     break;
+                case (int)Error.NameIsExist:
+                    GameRoot.Instance.DynamicWnd.AddTips("用户名重复...");
+                    break;
+                case (int)Error.UpdateDBError:
+                    PECommon.Log("数据库更新出错", LogType.Error);
+                    GameRoot.Instance.DynamicWnd.AddTips("网络不稳定...");
+                    break; ;
             }
         }
 

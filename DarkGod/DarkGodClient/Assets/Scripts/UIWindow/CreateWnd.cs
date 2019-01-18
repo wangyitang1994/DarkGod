@@ -6,6 +6,7 @@
 	功能：创建角色窗口管理
 *****************************************************/
 
+using Protocol;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -34,6 +35,15 @@ public class CreateWnd : WindowRoot
             if (playerName.text != "")
             {
                 //TODO 进入游戏
+                NetMsg msg = new NetMsg()
+                {
+                    cmd = (int)CMD.ReqRename,
+                    reqRename = new ReqRename()
+                    {
+                        name = playerName.text
+                    }
+                };
+                net.SendMsg(msg);
             }
             else
             {

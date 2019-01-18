@@ -24,7 +24,7 @@ public struct MsgPack
 public class NetSvc : Singleton<NetSvc>
 {
     private Queue<MsgPack> msgPackQueue = new Queue<MsgPack>();
-    private static readonly string obj = "look";
+    private static readonly string obj = "lock";
 
 
 
@@ -46,8 +46,8 @@ public class NetSvc : Singleton<NetSvc>
         {
             lock (obj)
             {
-                MsgPack msg = msgPackQueue.Dequeue();
-                HandOutMsg(msg);
+                MsgPack pack = msgPackQueue.Dequeue();
+                HandOutMsg(pack);
             }
         }
     }
@@ -58,6 +58,7 @@ public class NetSvc : Singleton<NetSvc>
         {
             case CMD.ReqLogin:
                 LoginSys.Instance.ReqLogin(pack);
+                PECommon.Log("-->reqLogin");
                 break;
             case CMD.ReqRename:
                 LoginSys.Instance.ReqRename(pack);

@@ -18,8 +18,14 @@ public class ServerSession : PESession<NetMsg>
 
     protected override void OnReciveMsg(NetMsg msg)
     {
-        PECommon.Log("Recive:" + msg.cmd);
-        PECommon.Log("Recive:" + msg.reqLogin.account + msg.reqLogin.password);
+        MsgPack pack = new MsgPack()
+        {
+            serSession = this,
+            netMsg = msg
+        };
+        NetSvc.Instance.AddMsgQue(pack);
+        //PECommon.Log("Recive:" + msg.cmd);
+        //PECommon.Log("Recive:" + msg.reqLogin.account + msg.reqLogin.password);
     }
 
 

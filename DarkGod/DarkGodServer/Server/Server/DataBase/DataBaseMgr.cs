@@ -25,7 +25,6 @@ class DataBaseMgr : Singleton<DataBaseMgr>
         string constr = "server=localhost;user='root';password=;database=darkgod;charset=utf8";
         conn = new MySqlConnection(constr);
         conn.Open();
-        QueryPlayerData("MYMY", "123456");
     }
 
     public PlayerData QueryPlayerData(string account, string password)
@@ -130,14 +129,15 @@ class DataBaseMgr : Singleton<DataBaseMgr>
     {
         try
         {
-            cmd = new MySqlCommand("Update accountinfo set name=@name,level=@level,exp=@exp,power=@power,coin=@coin,diamond=@diamond where id=@id",conn);
+            cmd = new MySqlCommand("update accountinfo set name=@name,level=@level,exp=@exp,power=@power,coin=@coin,diamond=@diamond where id=@id",conn);
+            cmd.Parameters.AddWithValue("id", id);
             cmd.Parameters.AddWithValue("name", data.name);
             cmd.Parameters.AddWithValue("level", data.level);
             cmd.Parameters.AddWithValue("exp", data.exp);
             cmd.Parameters.AddWithValue("power", data.power);
             cmd.Parameters.AddWithValue("coin", data.coin);
             cmd.Parameters.AddWithValue("diamond", data.diamond);
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.ExecuteNonQuery();
             return true;
         }
         catch (Exception e)

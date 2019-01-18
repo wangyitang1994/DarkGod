@@ -44,7 +44,7 @@ public class LoginWnd : WindowRoot
                 };
                 PlayerPrefs.SetString("Account", acct);
                 PlayerPrefs.SetString("Password", pass);
-                LoginSys.Instance.RspLogin(msg);
+                net.SendMsg(msg);
             }
             else
             {

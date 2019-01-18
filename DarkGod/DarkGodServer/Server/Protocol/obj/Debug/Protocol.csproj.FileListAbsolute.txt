@@ -14,3 +14,10 @@ G:\Unity3D\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csproj.CoreC
 G:\Unity3D\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csproj.CopyComplete
 G:\Unity3D\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.dll
 G:\Unity3D\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.pdb
+E:\UnityProject\DarkGodRepository\DarkGod\DarkGodClient\Assets\Scripts\Net\Protocol.dll
+E:\UnityProject\DarkGodRepository\DarkGod\DarkGodClient\Assets\Scripts\Net\Protocol.pdb
+E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache
+E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csproj.CoreCompileInputs.cache
+E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csproj.CopyComplete
+E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.dll
+E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.pdb

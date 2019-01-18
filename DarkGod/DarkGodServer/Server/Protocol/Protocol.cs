@@ -43,7 +43,7 @@ namespace Protocol
     [Serializable]
     public class RspRename
     {
-        public PlayerData playerData;
+        public string name;
     }
 
     [Serializable]
@@ -71,8 +71,8 @@ namespace Protocol
 
     public enum CMD
     {
-        None = 1000,
-        ReqLogin,//接受
+        None = 0,
+        ReqLogin = 1001,//接受
         RspLogin,//响应
         ReqRename,
         RspRename,
@@ -80,8 +80,8 @@ namespace Protocol
 
     public enum Error
     {
-        None = 2000,
-        AccountIsOnline, //账号已登陆
+        None = 0,
+        AccountIsOnline = 2001, //账号已登陆
         WrongPass,       //账号密码错误
         NameIsExist,     //重名
         UpdateDBError,   //数据库更新错误

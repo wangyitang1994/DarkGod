@@ -40,11 +40,23 @@ public class LoginSys : SystemRoot
 
     public void RspLogin(NetMsg msg)
     {
-        
         PECommon.Log("登陆成功");
-        //TODO 根据msg显示
-        createWnd.SetWndState();
+        GameRoot.Instance.SetPlayerData(msg.rspLogin.playerData);
+        
+        if (msg.rspLogin.playerData.name == "")
+        {
+            createWnd.SetWndState();
+        }
+        else
+        {
+            //TODO 进入主城
+        }
         loginWnd.SetWndState(false);
     }
 
+    public void RspRename(NetMsg msg)
+    {
+        //print(msg.rspRename.name);
+        GameRoot.Instance.SetPlayerDataName(msg.rspRename.name);
+    }
 }

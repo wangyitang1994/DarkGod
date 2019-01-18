@@ -18,7 +18,7 @@ public class ClientSession : PESession<NetMsg>
 
     protected override void OnReciveMsg(NetMsg msg)
     {
-        PECommon.Log("Recive:" + msg.text);
+        NetSvc.Instance.AddMsgQue(msg);
     }
 
     protected override void OnDisConnected()

@@ -7,15 +7,18 @@ using LogType = Protocol.LogType;
 public class GameRoot : UnitySingleton<GameRoot>
 {
     [SerializeField] private LoadingWnd loadingWnd;
-    public LoadingWnd LoadingWnd {
+    public LoadingWnd LoadingWnd
+    {
         get { return loadingWnd; }
     }
-   
+
     [SerializeField] private DynamicWnd dynamicWnd;
-    public DynamicWnd DynamicWnd {
+    public DynamicWnd DynamicWnd
+    {
         get { return dynamicWnd; }
     }
-    
+
+    public PlayerData PlayerData { get; private set; }
 
     void Start()
     {
@@ -44,5 +47,15 @@ public class GameRoot : UnitySingleton<GameRoot>
 
 
         LoginSys.Instance.EnterLogin();
+    }
+
+    public void SetPlayerData(PlayerData data)
+    {
+        PlayerData = data;
+    }
+
+    public void SetPlayerDataName(string name)
+    {
+        PlayerData.name = name;
     }
 }
