@@ -42,7 +42,7 @@ class CacheSvc : Singleton<CacheSvc>
     {
         return dbMgr.QueryNameData(name);
     }
-    //
+    //通过Session获得玩家信息
     public PlayerData GetPlayerDataBySession(ServerSession session)
     {
         if (onlineSessionDic.TryGetValue(session, out PlayerData data))
@@ -51,11 +51,24 @@ class CacheSvc : Singleton<CacheSvc>
         }
         return null;
     }
-    //
+    //更新数据库的玩家信息
     public bool UpdatePlayerData(int id, PlayerData data)
     {
         return dbMgr.UpdataPlayerData(id, data);
     }
+    //玩家下线移除缓存
+    public void AccountOffline(ServerSession session)
+    {
 
+        foreach (var item in onlineAccountDic)
+        {
+            if (item.Value == session)
+            {
+                onlineAccountDic.Remove(item.Key);
+                return;
+            }
+        }
+        PECommon.Log("Account Not Online...", LogType.Warn);
+    }
 }
 

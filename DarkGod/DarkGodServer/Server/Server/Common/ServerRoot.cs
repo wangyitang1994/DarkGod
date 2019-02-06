@@ -6,10 +6,11 @@
 	功能：服务器管理
 *****************************************************/
 
-namespace Server
-{
+
     class ServerRoot : Singleton<ServerRoot>
     {
+        private int sessionID;
+
         public void Init()
         {
             NetSvc.Instance.Init();
@@ -17,5 +18,14 @@ namespace Server
             DataBaseMgr.Instance.Init();
             LoginSys.Instance.Init();
         }
+
+        public int GetSessionID()
+        {
+            if (sessionID >= int.MaxValue)
+            {
+                sessionID = 0;
+            }
+            return sessionID + 1;
+        }
     }
-}
+

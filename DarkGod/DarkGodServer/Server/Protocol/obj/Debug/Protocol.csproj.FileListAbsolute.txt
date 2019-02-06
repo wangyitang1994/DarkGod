@@ -21,3 +21,9 @@ E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debu
 E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csproj.CopyComplete
 E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.dll
 E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.pdb
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodClient\Assets\Scripts\Net\Protocol.dll
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodClient\Assets\Scripts\Net\Protocol.pdb
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.csproj.CoreCompileInputs.cache
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.dll
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Protocol\obj\Debug\Protocol.pdb

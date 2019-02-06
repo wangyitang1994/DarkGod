@@ -56,8 +56,16 @@ namespace Protocol
         public int power;
         public int coin;
         public int diamond;
+        public int hp;
+        public int ad;
+        public int ap;
+        public int addef;
+        public int apdef;
+        public int dodge;
+        public int pierce;
+        public int critical;
 
-        public PlayerData(int id, string name, int level, int exp, int power, int coin, int diamond)
+        public PlayerData(int id, string name, int level, int exp, int power, int coin, int diamond, int hp, int ad, int ap, int addef, int apdef, int dodge, int pierce, int critical)
         {
             this.id = id;
             this.name = name;
@@ -66,6 +74,14 @@ namespace Protocol
             this.power = power;
             this.coin = coin;
             this.diamond = diamond;
+            this.hp = hp;
+            this.ad = ad;
+            this.ap = ap;
+            this.addef = addef;
+            this.apdef = apdef;
+            this.dodge = dodge;
+            this.pierce = pierce;
+            this.critical = critical;
         }
     }
 

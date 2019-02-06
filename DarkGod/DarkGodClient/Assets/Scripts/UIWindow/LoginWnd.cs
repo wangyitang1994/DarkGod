@@ -17,6 +17,9 @@ public class LoginWnd : WindowRoot
     [SerializeField] private Button bntEnter;
     [SerializeField] private Button bntPop;
 
+    public string Acct { get; private set; }
+    public string Pass { get; private set; }
+
     protected override void InitWnd()
     {
         base.InitWnd();
@@ -33,17 +36,16 @@ public class LoginWnd : WindowRoot
         bntEnter.onClick.AddListener(() =>
         {
             audio.PlayUIAudio(Constants.LoginBtn);
-            string acct = account.text;
-            string pass = password.text;
-            if (acct != "" && pass != "")
+            Acct = account.text;
+            Pass = password.text;
+            if (Acct != "" && Pass != "")
             {
                 NetMsg msg = new NetMsg
                 {
                     cmd = (int)CMD.ReqLogin,
-                    reqLogin = new ReqLogin() { account = acct, password = pass }
+                    reqLogin = new ReqLogin() { account = Acct, password = Pass }
                 };
-                PlayerPrefs.SetString("Account", acct);
-                PlayerPrefs.SetString("Password", pass);
+
                 net.SendMsg(msg);
             }
             else

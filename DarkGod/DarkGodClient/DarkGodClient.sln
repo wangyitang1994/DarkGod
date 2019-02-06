@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkGodClient", "DarkGodClient.csproj", "{ED6FCA9F-9455-4ECB-79D4-E074861982BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkGodClient.Editor.Plugins", "DarkGodClient.Editor.Plugins.csproj", "{B06D34AF-0863-4BF6-8F21-F2B6D784CAC5}"

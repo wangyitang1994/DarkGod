@@ -42,14 +42,15 @@ public class LoginSys : SystemRoot
     {
         PECommon.Log("登陆成功");
         GameRoot.Instance.SetPlayerData(msg.rspLogin.playerData);
-        
+        PlayerPrefs.SetString("Account", loginWnd.Acct);
+        PlayerPrefs.SetString("Password", loginWnd.Pass);
         if (msg.rspLogin.playerData.name == "")
         {
             createWnd.SetWndState();
         }
         else
         {
-            //TODO 进入主城
+            MainCitySys.Instance.EnterCity();
         }
         loginWnd.SetWndState(false);
     }
@@ -58,5 +59,7 @@ public class LoginSys : SystemRoot
     {
         //print(msg.rspRename.name);
         GameRoot.Instance.SetPlayerDataName(msg.rspRename.name);
+        MainCitySys.Instance.EnterCity();
+        createWnd.SetWndState(false);
     }
 }

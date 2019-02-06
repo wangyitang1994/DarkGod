@@ -6,7 +6,9 @@
 	功能：窗口基类
 *****************************************************/
 
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class WindowRoot : MonoBehaviour
@@ -61,7 +63,7 @@ public class WindowRoot : MonoBehaviour
         img.gameObject.SetActive(isActive);
     }
 
-    protected void SetText(Text text ,string context = "")
+    protected void SetText(Text text, string context = "")
     {
         text.text = context;
     }
@@ -76,6 +78,31 @@ public class WindowRoot : MonoBehaviour
     protected void SetText(InputField text, int num = 0)
     {
         text.text = num.ToString();
+    }
+    #endregion
+
+    protected T GetOrAddComponent<T>(GameObject obj) where T : Component
+    {
+        T t = obj.GetComponent<T>();
+        if (t == null) { t = obj.AddComponent<T>(); }
+        return t;
+    }
+
+    #region ClickEvent
+    protected void OnClinckDown(GameObject obj, Action<PointerEventData> callback)
+    {
+        PEListener listener = GetOrAddComponent<PEListener>(obj);
+        listener.downCallback = callback;
+    }
+    protected void OnClinckUp(GameObject obj, Action<PointerEventData> callback)
+    {
+        PEListener listener = GetOrAddComponent<PEListener>(obj);
+        listener.upCallback = callback;
+    }
+    protected void OnDrag(GameObject obj, Action<PointerEventData> callback)
+    {
+        PEListener listener = GetOrAddComponent<PEListener>(obj);
+        listener.dragCallback = callback;
     }
     #endregion
 }

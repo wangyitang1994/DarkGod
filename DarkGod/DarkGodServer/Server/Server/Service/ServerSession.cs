@@ -10,8 +10,10 @@ using Protocol;
 
 public class ServerSession : PESession<NetMsg>
 {
+    public int sessionID;
     protected override void OnConnected()
     {
+        sessionID = ServerRoot.Instance.GetSessionID();
         PECommon.Log("Client Connected...");
         SendMsg(new NetMsg() { text = "Welcome to connected.." });
     }
@@ -31,6 +33,7 @@ public class ServerSession : PESession<NetMsg>
 
     protected override void OnDisConnected()
     {
+        LoginSys.Instance.CleanOffline(this);
         PECommon.Log("Client Disconnected...");
     }
 }

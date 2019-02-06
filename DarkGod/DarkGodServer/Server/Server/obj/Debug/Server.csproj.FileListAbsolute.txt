@@ -22,3 +22,14 @@ E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Server\obj\Debug\
 E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Server\obj\Debug\Server.csproj.CopyComplete
 E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Server\obj\Debug\Server.exe
 E:\UnityProject\DarkGodRepository\DarkGod\DarkGodServer\Server\Server\obj\Debug\Server.pdb
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\bin\Debug\Server.exe.config
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\bin\Debug\Server.exe
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\bin\Debug\Server.pdb
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\bin\Debug\MySql.Data.dll
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\bin\Debug\PESocket.dll
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\bin\Debug\Protocol.dll
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\bin\Debug\Protocol.pdb
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\obj\Debug\Server.exe
+G:\MyRepositroy\DarkGod\DarkGod\DarkGodServer\Server\Server\obj\Debug\Server.pdb

@@ -84,6 +84,11 @@ class LoginSys : Singleton<LoginSys>
         }
         pack.serSession.SendMsg(msg);
     }
+    //下线处理
+    public void CleanOffline(ServerSession session)
+    {
+        cache.AccountOffline(session);
+    }
 }
 
 

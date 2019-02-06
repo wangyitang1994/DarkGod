@@ -21,10 +21,10 @@ class DataBaseMgr : Singleton<DataBaseMgr>
 
     public void Init()
     {
-        PECommon.Log("DataBaseMgr Init...");
-        string constr = "server=localhost;user='root';password=;database=darkgod;charset=utf8";
+        string constr = "server=192.168.1.102;user='root';password=;database=darkgod;charset=utf8";
         conn = new MySqlConnection(constr);
         conn.Open();
+        PECommon.Log("DataBaseMgr Init...");
     }
 
     public PlayerData QueryPlayerData(string account, string password)
@@ -37,22 +37,35 @@ class DataBaseMgr : Singleton<DataBaseMgr>
             cmd = new MySqlCommand("select * from accountinfo where account=@acct", conn);
             cmd.Parameters.AddWithValue("acct", account);
             reader = cmd.ExecuteReader();
-            if (reader.Read() && reader.GetString("password") == password)
+            if (reader.Read())
             {
-                isExist = true;
-                int id = reader.GetInt32("id");
-                string name = reader.GetString("name");
-                int level = reader.GetInt32("level");
-                int exp = reader.GetInt32("exp");
-                int power = reader.GetInt32("power");
-                int coin = reader.GetInt32("coin");
-                int diamond = reader.GetInt32("diamond");
-                data = new PlayerData(id, name, level, exp, power, coin, diamond);
-                PECommon.Log("Return PlayerData...");
-            }
-            else
-            {
-                PECommon.Log("Account Or Password is Wrong...");
+                if (reader.GetString("password") == password)
+                {
+                    isExist = true;
+                    int id = reader.GetInt32("id");
+                    string name = reader.GetString("name");
+                    int level = reader.GetInt32("level");
+                    int exp = reader.GetInt32("exp");
+                    int power = reader.GetInt32("power");
+                    int coin = reader.GetInt32("coin");
+                    int diamond = reader.GetInt32("diamond");
+
+                    int hp = reader.GetInt32("hp");
+                    int ad = reader.GetInt32("ad");
+                    int ap = reader.GetInt32("ap");
+                    int addef = reader.GetInt32("addef");
+                    int apdef = reader.GetInt32("apdef");
+                    int dodge = reader.GetInt32("dodge");
+                    int pierce = reader.GetInt32("pierce");
+                    int critical = reader.GetInt32("critical");
+                    data = new PlayerData(id, name, level, exp, power, coin, diamond, hp, ad, ap, addef, apdef, dodge, pierce, critical);
+                    PECommon.Log("Return PlayerData...");
+                }
+                else
+                {
+                    PECommon.Log("Account Or Password is Wrong...");
+                    return null;
+                }
             }
         }
         catch (Exception e)
@@ -62,18 +75,26 @@ class DataBaseMgr : Singleton<DataBaseMgr>
         finally
         {
             reader.Close();
-            if (!isExist)
-            {
-                int id = -1;
-                string name = "";
-                int level = 1;
-                int exp = 0;
-                int power = 120;
-                int coin = 3000;
-                int diamond = 0;
-                data = new PlayerData(id, name, level, exp, power, coin, diamond);
-                data.id = InsertNewAcctData(account, password, data);
-            }
+        }
+        if (!isExist)
+        {
+            int id = -1;
+            string name = "";
+            int level = 1;
+            int exp = 0;
+            int power = 120;
+            int coin = 3000;
+            int diamond = 0;
+            int hp = 2000;
+            int ad = 275;
+            int ap = 265;
+            int addef = 67;
+            int apdef = 43;
+            int dodge = 7;
+            int pierce = 5;
+            int critical = 2;
+            data = new PlayerData(id, name, level, exp, power, coin, diamond, hp, ad, ap, addef, apdef, dodge, pierce, critical);
+            data.id = InsertNewAcctData(account, password, data);
         }
         return data;
     }
@@ -82,7 +103,8 @@ class DataBaseMgr : Singleton<DataBaseMgr>
     {
         try
         {
-            cmd = new MySqlCommand("insert into accountinfo set account=@acct,password=@pass,name=@name,level=@level,exp=@exp,power=@power,coin=@coin,diamond=@diamond", conn);
+            cmd = new MySqlCommand("insert into accountinfo set account=@acct,password=@pass,name=@name,level=@level,exp=@exp,power=@power,coin=@coin,diamond=@diamond" +
+                ",hp=@hp,ad=@ad,ap=@ap,addef=@addef,apdef=@apdef,dodge=@dodge,pierce=@pierce,critical=@critical", conn);
             cmd.Parameters.AddWithValue("acct", acct);
             cmd.Parameters.AddWithValue("pass", pass);
             cmd.Parameters.AddWithValue("name", data.name);
@@ -91,6 +113,16 @@ class DataBaseMgr : Singleton<DataBaseMgr>
             cmd.Parameters.AddWithValue("power", data.power);
             cmd.Parameters.AddWithValue("coin", data.coin);
             cmd.Parameters.AddWithValue("diamond", data.diamond);
+
+            cmd.Parameters.AddWithValue("hp", data.hp);
+            cmd.Parameters.AddWithValue("ad", data.ad);
+            cmd.Parameters.AddWithValue("ap", data.ap);
+            cmd.Parameters.AddWithValue("addef", data.addef);
+            cmd.Parameters.AddWithValue("apdef", data.apdef);
+            cmd.Parameters.AddWithValue("dodge", data.dodge);
+            cmd.Parameters.AddWithValue("pierce", data.pierce);
+            cmd.Parameters.AddWithValue("critical", data.critical);
+
             cmd.ExecuteNonQuery();
             return (int)cmd.LastInsertedId;
         }
@@ -129,7 +161,8 @@ class DataBaseMgr : Singleton<DataBaseMgr>
     {
         try
         {
-            cmd = new MySqlCommand("update accountinfo set name=@name,level=@level,exp=@exp,power=@power,coin=@coin,diamond=@diamond where id=@id",conn);
+            cmd = new MySqlCommand("update accountinfo set name=@name,level=@level,exp=@exp,power=@power,coin=@coin,diamond=@diamond" +
+                ",hp=@hp,ad=@ad,ap=@ap,addef=@addef,apdef=@apdef,dodge=@dodge,pierce=@pierce,critical=@critical where id=@id", conn);
             cmd.Parameters.AddWithValue("id", id);
             cmd.Parameters.AddWithValue("name", data.name);
             cmd.Parameters.AddWithValue("level", data.level);
@@ -137,6 +170,15 @@ class DataBaseMgr : Singleton<DataBaseMgr>
             cmd.Parameters.AddWithValue("power", data.power);
             cmd.Parameters.AddWithValue("coin", data.coin);
             cmd.Parameters.AddWithValue("diamond", data.diamond);
+
+            cmd.Parameters.AddWithValue("hp", data.hp);
+            cmd.Parameters.AddWithValue("ad", data.ad);
+            cmd.Parameters.AddWithValue("ap", data.ap);
+            cmd.Parameters.AddWithValue("addef", data.addef);
+            cmd.Parameters.AddWithValue("apdef", data.apdef);
+            cmd.Parameters.AddWithValue("dodge", data.dodge);
+            cmd.Parameters.AddWithValue("pierce", data.pierce);
+            cmd.Parameters.AddWithValue("critical", data.critical);
             cmd.ExecuteNonQuery();
             return true;
         }
